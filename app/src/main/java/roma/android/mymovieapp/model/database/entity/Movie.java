@@ -12,7 +12,7 @@ public class Movie {
     @PrimaryKey
     @NonNull
     String idWithType;
-    int id;
+    int id, idOriginal;
     String popularity, vote_count, poster_path, title, vote_average, overview, release_date,backdrop_path, type;
 
     public int getId() {
@@ -21,6 +21,14 @@ public class Movie {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdOriginal() {
+        return idOriginal;
+    }
+
+    public void setIdOriginal(int idOriginal) {
+        this.idOriginal = idOriginal;
     }
 
     public String getPopularity() {

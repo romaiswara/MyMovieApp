@@ -27,16 +27,20 @@ public class MovieViewModel extends AndroidViewModel {
         return listMovieMutable;
     }
 
-    public void getMovieNowPlaying(){
-        repository.getMovieNowPlaying();
+    public void requestMovieNowPlaying(){
+        repository.requestMovieNowPlaying();
     }
 
-    public void getMovieUpcoming(){
-        repository.getMovieUpcoming();
+    public void requestMovieUpcoming(){
+        repository.requestMovieUpcoming();
     }
 
-    public void getMovieByIdOnline(String id){
-        repository.getMovieByIdOnline(id);
+    public void requestMovieRecommended(int id){
+        repository.requestMovieRecommended(id);
+    }
+
+    public void requestMovieSimilar(int id){
+        repository.requestMovieSimilar(id);
     }
 
     public LiveData<List<Movie>> getListMovieNowPlaying(){
@@ -51,8 +55,21 @@ public class MovieViewModel extends AndroidViewModel {
         return repository.getAllMovieFavorite();
     }
 
-    public Movie getMovieById(String id){
+
+    public LiveData<List<Movie>> getAllMovieRecomended(int idMovie){
+        return repository.getAllMovieRecomended(idMovie);
+    }
+
+    public LiveData<List<Movie>> getAllMovieSimilar(int idMovie){
+        return repository.getAllMovieSimilar(idMovie);
+    }
+
+    public Movie getMovieById(int id){
         return repository.getMovieById(id);
+    }
+
+    public Movie getMovieByIdWithType(String idWithType){
+        return repository.getMovieByIdWithType(idWithType);
     }
 
     public void insertMovies(Movie movie){

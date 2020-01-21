@@ -7,12 +7,17 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import roma.android.mymovieapp.model.database.entity.Movie;
+import roma.android.mymovieapp.model.database.entity.Review;
+import roma.android.mymovieapp.model.database.entity.Video;
 import roma.android.mymovieapp.model.database.interfacedao.DaoMovie;
+import roma.android.mymovieapp.model.database.interfacedao.DaoReview;
+import roma.android.mymovieapp.model.database.interfacedao.DaoVideo;
 
-@Database(entities = {Movie.class}, version = 1, exportSchema = false)
+@Database(entities = {Movie.class, Video.class, Review.class}, version = 3, exportSchema = false)
 public abstract class AppDb extends RoomDatabase {
     public abstract DaoMovie daoMovie();
-
+    public abstract DaoVideo daoVideo();
+    public abstract DaoReview daoReview();
 
     private static volatile AppDb INSTANCE = null;
 

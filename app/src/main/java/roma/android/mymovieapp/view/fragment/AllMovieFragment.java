@@ -43,17 +43,17 @@ public class AllMovieFragment extends Fragment {
         int type = bundle.getInt("type", 0);
 
         adapter = new MovieAllAdapter(getContext(), (movie, imageView) -> {
-            if (!Tools.isOnline(getContext())){
-                Tools.showDialogNoConnection(getContext());
-            } else {
-                startActivity(new Intent(getActivity(), DetailActivity.class).putExtra("id", movie.getId()).putExtra("access", true), Tools.getOptions(getActivity(), imageView).toBundle());
-            }
+            startActivity(new Intent(getActivity(), DetailActivity.class).putExtra("idmovie", movie.getId()), Tools.getOptions(getActivity(), imageView).toBundle());
         });
         binding.rvList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         viewModel = new ViewModelProvider(this).get(MovieAllViewModel.class);
         viewModel.getMovie(type);
-        viewModel.moviePagedList.observe(getActivity(), movies -> adapter.submitList(movies));
+        if (Tools.isOnline(getContext())) {
+            viewModel.moviePagedList.observe(getActivity(), movies -> adapter.submitList(movies));
+        } else {
+            viewModel.movieDbList.observe(getActivity(), movies -> adapter.submitList(movies));
+        }
 
         binding.rvList.setAdapter(adapter);
 

@@ -13,16 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import roma.android.mymovieapp.R;
-import roma.android.mymovieapp.databinding.ItemMovieBinding;
+import roma.android.mymovieapp.databinding.ItemMovieDetailBinding;
 import roma.android.mymovieapp.model.database.entity.Movie;
 
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class MovieDetailAdapter extends RecyclerView.Adapter<MovieDetailAdapter.ViewHolder> {
     private Context context;
     private List<Movie> list;
     listener listener;
 
-    public MovieAdapter(Context context, List<Movie> list, MovieAdapter.listener listener) {
+    public MovieDetailAdapter(Context context, List<Movie> list, MovieDetailAdapter.listener listener) {
         this.context = context;
         this.list = list;
         this.listener = listener;
@@ -36,7 +36,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemMovieBinding movieBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_movie, parent, false);
+        ItemMovieDetailBinding movieBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_movie_detail, parent, false);
         return new ViewHolder(movieBinding);
     }
 
@@ -54,8 +54,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private ItemMovieBinding movieBinding;
-        public ViewHolder(@NonNull ItemMovieBinding movieBinding){
+        private ItemMovieDetailBinding movieBinding;
+        public ViewHolder(@NonNull ItemMovieDetailBinding movieBinding){
             super(movieBinding.getRoot());
             this.movieBinding = movieBinding;
         }

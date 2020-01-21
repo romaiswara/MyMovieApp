@@ -43,44 +43,35 @@ public class HomeFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(MovieViewModel.class);
         viewModel.getListMovieNowPlaying().observe(getActivity(), movies -> adapterNowPlaying.updateData(movies));
         viewModel.getListMovieUpcoming().observe(getActivity(), movies -> adapterUpcoming.updateData(movies));
-        viewModel.getMovieNowPlaying();
-        viewModel.getMovieUpcoming();
+        viewModel.requestMovieNowPlaying();
+        viewModel.requestMovieUpcoming();
 
         adapterNowPlaying = new MovieAdapter(getContext(), new ArrayList<>(), (movie, imageView) -> {
-            startActivity(new Intent(getActivity(), DetailActivity.class).putExtra("id", movie.getIdWithType()), Tools.getOptions(getActivity(), imageView).toBundle());
+            startActivity(new Intent(getActivity(), DetailActivity.class).putExtra("idmovie", movie.getId()), Tools.getOptions(getActivity(), imageView).toBundle());
         });
         adapterUpcoming = new MovieAdapter(getContext(), new ArrayList<>(), (movie, imageView) -> {
-            startActivity(new Intent(getActivity(), DetailActivity.class).putExtra("id", movie.getIdWithType()), Tools.getOptions(getActivity(), imageView).toBundle());
+            startActivity(new Intent(getActivity(), DetailActivity.class).putExtra("idmovie", movie.getId()), Tools.getOptions(getActivity(), imageView).toBundle());
         });
 
         setRecyclerView(binding.rvSedangTayang, adapterNowPlaying);
         setRecyclerView(binding.rvAkanDatang, adapterUpcoming);
 
         binding.tvSelengkapnyaSedangTayang.setOnClickListener(view1 -> {
-            if (!Tools.isOnline(getContext())){
-                Tools.showDialogNoConnection(getContext());
-            } else {
-                Bundle bundle = new Bundle();
-                bundle.putInt("type", 1);
-                Navigation.findNavController(view).navigate(R.id.action_navigation_home_to_allMovieFragment, bundle);
-            }
+            goAllMovie(view, 1);
         });
         binding.tvSelengkapnyaAkanDatang.setOnClickListener(view1 -> {
-            if (!Tools.isOnline(getContext())){
-                Tools.showDialogNoConnection(getContext());
-            } else {
-                Bundle bundle = new Bundle();
-                bundle.putInt("type", 2);
-                Navigation.findNavController(view).navigate(R.id.action_navigation_home_to_allMovieFragment, bundle);
-            }
+            goAllMovie(view, 2);
         });
-
-
-
         return view;
     }
 
-    private void setRecyclerView(RecyclerView recyclerView, MovieAdapter adapter){
+    private void goAllMovie(View view, int type){
+        Bundle bundle = new Bundle();
+        bundle.putInt("type", type);
+        Navigation.findNavController(view).navigate(R.id.action_navigation_home_to_allMovieFragment, bundle);
+    }
+
+    private void setRecyclerView(RecyclerView recyclerView, MovieAdapter adapter) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);

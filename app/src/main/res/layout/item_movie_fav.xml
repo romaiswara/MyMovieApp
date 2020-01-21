@@ -62,7 +62,6 @@
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
-                        android:transitionName="example_transition"
                         android:src="@drawable/ic_star"/>
                     <TextView
                         android:layout_width="match_parent"
