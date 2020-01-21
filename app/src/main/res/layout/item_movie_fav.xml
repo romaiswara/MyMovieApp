@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:apps="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="movie"
+            type="roma.android.mymovieapp.model.database.entity.Movie" />
+
+        <variable
+            name="icon"
+            type="int" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:id="@+id/img_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    app:imageUrl="@{movie.urlPoster}"
+                    android:transitionName="example_transition"
+                    android:scaleType="centerCrop"
+                    android:src="@android:color/holo_green_dark"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="@android:color/white"
+                android:layout_marginTop="134dp"
+                android:layout_marginRight="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:transitionName="example_transition"
+                        android:src="@drawable/ic_star"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="@{movie.vote_average}"
+                        apps:text="6"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorRating"
+                        android:textSize="10sp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:id="@+id/rl_ket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cv_image"
+                android:layout_toLeftOf="@id/cv_rating">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="8dp">
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@{movie.title}"
+                        apps:text="Hallo Geng"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:maxLines="2"/>
+                    <TextView
+                        android:id="@+id/overview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@{movie.overview}"
+                        apps:text="Overview"
+                        android:textSize="9sp"
+                        android:maxLines="3"
+                        android:layout_marginBottom="8dp"/>
+                    <TextView
+                        android:id="@+id/popularity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@{movie.popularity}"
+                        apps:text="Popularity"
+                        android:textColor="@color/colorPopularity"
+                        android:drawableLeft="@drawable/ic_thumb_up"
+                        android:drawablePadding="4dp"
+                        android:textSize="11sp"
+                        android:maxLines="1"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                android:backgroundTint="@android:color/white"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/rl_ket"
+                android:layout_margin="8dp"
+                android:visibility="gone">
+                <ImageView
+                    android:id="@+id/img_fav"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_margin="8dp"
+                    android:src="@drawable/ic_favorite_red"/>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:apps="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="movie"
+            type="roma.android.mymovieapp.model.database.entity.Movie" />
+
+        <variable
+            name="icon"
+            type="int" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cd_img_view"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:id="@+id/img_view"
+                    android:layout_width="120dp"
+                    android:layout_height="150dp"
+                    app:imageUrl="@{movie.urlPoster}"
+                    android:transitionName="example_transition"
+                    android:scaleType="centerCrop"
+                    android:src="@android:color/holo_green_dark"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toLeftOf="@id/cv_rating"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@{movie.title}"
+                        apps:text="Hallo Geng"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:maxLines="2"/>
+                    <TextView
+                        android:id="@+id/overview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@{movie.overview}"
+                        apps:text="Overview"
+                        android:maxLines="3"/>
+                    <TextView
+                        android:id="@+id/popularity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@{movie.popularity}"
+                        apps:text="Popularity"
+                        android:textColor="@color/colorPopularity"
+                        android:drawableLeft="@drawable/ic_thumb_up"
+                        android:drawablePadding="4dp"
+                        android:maxLines="1"/>
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_rating"
+                    android:layout_width="60dp"
+                    android:layout_height="150dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    android:layout_alignParentEnd="true">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:transitionName="example_transition"
+                            android:src="@drawable/ic_star"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="@{movie.vote_average}"
+                            apps:text="6"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorRating"
+                            android:textSize="16sp"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/icn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:imageResource="@{icon}"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
